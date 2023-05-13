@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import {data} from "./component/data"
+import React, { useState } from "react";
+import "../src/component/Card";
+import { Route, Routes } from "react-router-dom";
+import CardList from "./component/CardList";
+import Details from "./component/Details";
 
-function App() {
+const App = () => {
+  const [list, setList] = useState(data);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/" element={<CardList list={list} />} />
+      <Route path="/details/:idmov" element={<Details list={list} />} />
+    </Routes>
   );
-}
+};
 
 export default App;
